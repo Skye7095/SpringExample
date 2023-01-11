@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ 
+<mapper namespace="com.moonlight.spring.ex.database.dao.UsedGoodsDao">
+	
+	<!-- id는 dao에 있는 메소드, resultType은 리턴타입이다. -->
+	<!-- SELECT * FROM을 사용하지 않는다. 나중에 데이터들이 조작되서 컬럼 더 추가 될 수 있어서
+		현재 있는 컬럼을 명확하게 표시해야만 나중에 에러 안 생김 -->
+	<select id="selectUsedGoodsList" resultType="com.moonlight.spring.ex.database.model.UsedGoods">
+		SELECT
+			`id`
+			, `sellerId`
+			, `title`
+			, `price`
+			, `description`
+			, `picture`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`used_goods`
+	</select>
+	
+</mapper>
