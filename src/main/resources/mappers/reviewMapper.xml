@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+ <!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.moonlight.spring.ex.mybatis.dao.ReviewDAO">
+	
+	<select id="selectReview" resultType="com.moonlight.spring.ex.mybatis.model.Review"
+	parameterType="int">
+		SELECT 
+			`id`
+			, `storeId`
+			, `menu`
+			, `userName`
+			, `point`
+			, `review`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`new_review`
+		WHERE
+			`id` = #{id}	
+	</select>
+	
+	<insert id="insertReview" parameterType="map">
+	<!-- insert의 resultType은 고정적으로 int로 됨. 따로 표시해줄 필요없음(표시하다가 error생김) -->
+		INSERT INTO
+			`new_review`
+		(
+			`storeId`
+			, `menu`
+			, `userName`
+			, `point`
+			, `review`
+			, `createdAt`
+			, `updatedAt`
+		)
+		VALUES
+		(
+			<!-- 밑에 parameter은 database에 나오는 컬럼이름들 -->
+			#{storeId}
+			, #{menu}
+			, #{userName}
+			, #{point}
+			, #{review}
+			, now()
+			, now()
+		)
+	</insert>
+	
+	<insert id="insertReviewByObject" parameterType="com.moonlight.spring.ex.mybatis.model.Review">
+		INSERT INTO
+			`new_review`
+		(
+			`storeId`
+			, `menu`
+			, `userName`
+			, `point`
+			, `review`
+			, `createdAt`
+			, `updatedAt`
+		)
+		VALUES
+		(
+			<!-- 밑에 parameter은 Review에서 만들어낸 변수이름들 -->
+			#{storeId}
+			, #{menu}
+			, #{userName}
+			, #{point}
+			, #{review}
+			, now()
+			, now()
+		)
+	
+	</insert>
+</mapper>
