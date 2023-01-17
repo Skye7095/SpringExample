@@ -14,7 +14,7 @@ public interface ReviewDAO {
 	// insert기능
 	// 실행된 행의 갯수를 리턴 받음. > 리턴타입 int
 	public int insertReview(
-			@Param("storeId") int storeId
+			@Param("storeId") int storeI
 			, @Param("menu") String menu
 			, @Param("userName") String userName
 			, @Param("point") double point
