@@ -33,17 +33,32 @@ public class NewUserController {
 	// method에서 기본적으로 GET으로 되있음. POST로 변경하면 됨. 혹은 아래 방법으로
 	
 	// 원하는 방식에 따라 GetMapping이나 PostMapping으로 구분해서 진행
-	@ResponseBody
+//	@ResponseBody
 	@PostMapping("/add")
 	public String addUser(
 			@RequestParam("name") String name
 			, @RequestParam("birthday") String birthday
 			, @RequestParam("email") String email
-			, @RequestParam("introduce") String introduce) {
+			, @RequestParam("introduce") String introduce
+			, Model model) {
 		
-		int count = newuserBO.addUser(name, birthday, email, introduce);
-		return "삽입결과: " + count;
+//		int count = newuserBO.addUser(name, birthday, email, introduce);
+//		return "삽입결과: " + count;
+		
+		NewUser user = new NewUser();
+		user.setName(name);
+		user.setYyyymmdd(birthday);
+		user.setEmail(email);
+		user.setIntroduce(introduce);
+		
+		newuserBO.addUserByObject(user);
+		
+		// 기존에 있는 responseBody 더 이상 필요없고 jsp 화면으로 가야함
+		model.addAttribute("user", user);
+		
+		return "jsp/lastuser";
 	}
+	
 	
 	// 입력화면
 	@GetMapping("/input")		// 이 화면에 접금할 때 get인지 post인지 결정함

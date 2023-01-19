@@ -24,4 +24,9 @@ public class NewUserBO {
 		
 		return newuserDAO.insertUser(name, birthday, email, introduce);
 	}
+	
+	public int addUserByObject(NewUser user) {
+		return newuserDAO.insertUserByObject(user);
+		
+	}
 }
