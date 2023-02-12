@@ -44,6 +44,7 @@
 	<h4>${now }</h4>
 	<h4><fmt:formatDate value="${now }" pattern="yyyy년 MM월 dd일"/></h4>
 	
+	<h3>문자열을 Date 객체로 변환</h3>
 	<h4>${dateString }</h4>
 	<h4><fmt:parseDate value="${dateString }" pattern="yyyy/MM/dd HH:mm:ss" var="date"/></h4>
 	<h4>${date }</h4>
